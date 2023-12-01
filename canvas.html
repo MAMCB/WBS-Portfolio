@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <canvas id="myCanvas" width="1490" height="680" style="border:1px solid #d3d3d3;">
+        Your browser does not support the HTML canvas tag.</canvas>
+    
+    <script>
+        var c = document.getElementById("myCanvas");
+       
+        var ctx = c.getContext("2d");
+
+        let mousePos = { x: undefined, y: undefined };
+        let draw = false;
+
+        c.addEventListener('mousemove', (event) => {
+            const localX = event.clientX;
+            const localY = event.clientY;
+            localMousePos = { x: localX, y: localY };
+            if(draw)
+            {
+                 ctx.lineTo(localMousePos.x, localMousePos.y);
+                ctx.stroke()
+                
+            }
+           
+            
+
+        });
+        c.addEventListener("mousedown",(event)=>{
+            draw=true;
+            ctx.beginPath();
+        });
+
+        c.addEventListener("mouseup", (event)=>{
+            draw=false;
+            ctx.closePath();
+        })
+
+
+
+    </script>
+    
+</body>
+</html>
